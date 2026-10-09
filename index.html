@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Solire — Your AI Studio</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="shell">
+<aside class="sidebar">
+  <a class="logo" href="#" data-view="home"><span class="logo-icon">✦</span><span>solire<small>YOUR AI STUDIO</small></span></a>
+  <div class="side-label">WORKSPACE</div>
+  <button class="nav active" data-view="home">⌂ <span>Home</span></button>
+  <button class="nav" data-view="chat">◈ <span>Chat</span></button>
+  <button class="nav" data-view="voice">◖ <span>Voice</span></button>
+  <button class="nav" data-view="images">▧ <span>Images</span></button>
+  <button class="nav" data-view="website">⌘ <span>Websites</span></button>
+  <button class="nav" data-view="story">▤ <span>Stories</span></button>
+  <button class="nav" data-view="personality">☼ <span>Personality</span></button>
+  <div class="side-bottom"><div class="tiny-avatar">✦</div><div><b>Solire AI</b><small>Creative workspace</small></div><button id="openPrefs" class="gear">⚙</button></div>
+</aside>
+<main class="main">
+<header class="top"><div class="mobile-brand">✦ solire</div><div class="breadcrumbs">Your workspace <span>/</span> <b id="crumb">Home</b></div><div class="topright"><span class="online"></span> Ready <button id="topPrefs" class="gear">⚙</button></div></header>
+<section class="view" id="homeView">
+  <div class="hero"><div class="eyebrow"><span>✦</span> YOUR PERSONAL CREATIVE AI</div><h1>Meet <em>Solire.</em></h1><p>One AI that chats, listens, paints, codes and tells stories — in whatever voice you like.</p><div class="hero-actions"><button class="primary" data-view="chat">Start chatting <span>↗</span></button><button class="secondary" data-view="personality">Customize personality</button></div></div>
+  <div class="tool-grid">
+    <button class="tool-card" data-view="chat"><div class="tool-icon lavender">◈</div><div><h3>Chat</h3><p>Ask anything, upload images for Solire to see.</p></div><span class="card-arrow">↗</span></button>
+    <button class="tool-card" data-view="voice"><div class="tool-icon mint">◖</div><div><h3>Voice chat</h3><p>Talk out loud — Solire talks back.</p></div><span class="card-arrow">↗</span></button>
+    <button class="tool-card" data-view="images"><div class="tool-icon peach">▧</div><div><h3>Image generator</h3><p>Turn words into image prompts and concepts.</p></div><span class="card-arrow">↗</span></button>
+    <button class="tool-card" data-view="website"><div class="tool-icon blue">⌘</div><div><h3>Website maker</h3><p>Get index.html + style.css with a live preview.</p></div><span class="card-arrow">↗</span></button>
+    <button class="tool-card" data-view="story"><div class="tool-icon pink">▤</div><div><h3>Story & book creator</h3><p>Write stories chapter by chapter.</p></div><span class="card-arrow">↗</span></button>
+    <button class="tool-card" data-view="personality"><div class="tool-icon gold">☼</div><div><h3>Personality</h3><p>Customize how Solire talks to you.</p></div><span class="card-arrow">↗</span></button>
+  </div><div class="home-note"><span>✦</span><div><b>A little more you, in every answer.</b><p>Set your tone once and let it carry across your creative tools.</p></div><button class="text-btn" data-view="personality">Set personality →</button></div>
+</section>
+<section class="view hidden" id="chatView">
+  <div class="page-heading"><div class="eyebrow">YOUR CONVERSATION</div><h1>Chat with Solire</h1><p>Ask a question, brainstorm, or upload an image for a local preview.</p></div>
+  <div class="chat-area" id="chatArea"><div class="chat-message bot"><div class="bubble-icon">✦</div><div><b>Solire</b><p>Hey! I'm Solire. What would you like to create today?</p></div></div></div>
+  <div class="attach-preview hidden" id="chatImagePreview"></div>
+  <form class="composer" id="chatForm"><label class="attach" title="Upload an image" for="chatUpload">＋</label><input type="file" id="chatUpload" accept="image/*" hidden><textarea id="chatText" rows="1" placeholder="Message Solire…" required></textarea><button class="send">↑</button></form><p class="fineprint">Demo chat uses built-in responses. Connect an AI backend for live model answers.</p>
+</section>
+<section class="view hidden" id="voiceView">
+  <div class="page-heading"><div class="eyebrow">HANDS-FREE MODE</div><h1>Voice chat</h1><p>Tap to start talking. Your browser handles speech input and spoken replies.</p></div>
+  <div class="voice-card"><div class="voice-orb"><span>✦</span></div><h2 id="voiceStatus">Ready when you are</h2><p id="voiceTranscript">Your words will appear here.</p><div class="button-row"><button class="primary" id="listen">🎙 Start talking</button><button class="secondary" id="sayLast">🔊 Speak last reply</button></div><small>Microphone permission and browser support are required.</small></div>
+</section>
+<section class="view hidden" id="imagesView">
+  <div class="page-heading"><div class="eyebrow">IMAGE LAB</div><h1>Image generator</h1><p>Describe your idea, pick a style, and build a ready-to-use image prompt.</p></div>
+  <div class="work-card"><label class="field-label" for="imagePrompt">WHAT SHOULD WE CREATE?</label><textarea id="imagePrompt" class="input big" rows="4" placeholder="A tiny astronaut tending a garden on the moon, cinematic lighting…"></textarea><div class="field-label">CHOOSE A STYLE</div><div class="style-grid" id="styles"><button class="style-choice selected" data-style="Photorealistic">Photorealistic</button><button class="style-choice" data-style="Anime">Anime</button><button class="style-choice" data-style="3D render">3D render</button><button class="style-choice" data-style="Watercolor">Watercolor</button><button class="style-choice" data-style="Cyberpunk">Cyberpunk</button><button class="style-choice" data-style="Oil painting">Oil painting</button><button class="style-choice" data-style="Pixel art">Pixel art</button></div><div class="form-row"><div><label class="field-label" for="imageRatio">ASPECT RATIO</label><select class="input" id="imageRatio"><option>Square 1:1</option><option>Landscape 16:9</option><option>Portrait 3:4</option></select></div><div><label class="field-label" for="imageQuality">DETAIL</label><select class="input" id="imageQuality"><option>High detail</option><option>Soft and minimal</option><option>Bold and graphic</option></select></div></div><button class="primary" id="makeImage">✦ Generate prompt</button><div class="result hidden" id="imageResult"><div class="result-head"><b>Your image prompt</b><button class="secondary small" data-copy="imageResultText">Copy prompt</button></div><p id="imageResultText"></p><div class="placeholder-art"><span>✦</span><small>Prompt concept preview</small></div><p class="fineprint">This version builds prompts, not image files. A real image model API is needed to render images.</p></div></div>
+</section>
+<section class="view hidden" id="websiteView">
+  <div class="page-heading"><div class="eyebrow">WEBSITE WORKSHOP</div><h1>Website maker</h1><p>Describe a site. Solire writes index.html + style.css, then preview and download them.</p></div>
+  <div class="work-card"><label class="field-label" for="sitePrompt">DESCRIBE YOUR WEBSITE</label><textarea class="input big" id="sitePrompt" rows="3" placeholder="A modern website for a pizza restaurant with a menu, photos, and contact section…"></textarea><div class="suggestions"><button class="suggest" data-prompt="A landing page for a coffee shop called Ember">Coffee shop landing page</button><button class="suggest" data-prompt="A dark, elegant portfolio for a photographer">Photographer portfolio</button><button class="suggest" data-prompt="A pizza restaurant website with a menu and contact form">Pizza restaurant</button></div><div class="button-row"><button class="primary" id="buildSite">✦ Generate website</button><label class="secondary upload-btn" for="siteUpload">＋ Upload reference image</label><input type="file" id="siteUpload" accept="image/*" hidden></div><div class="site-result hidden" id="siteResult"><div class="code-tabs"><button class="code-tab active" data-code="html">index.html</button><button class="code-tab" data-code="css">style.css</button><span class="spacer"></span><button class="secondary small" id="downloadSite">Download files</button></div><div class="site-workspace"><div class="code-pane"><textarea id="htmlCode" spellcheck="false"></textarea><textarea id="cssCode" spellcheck="false" class="hidden"></textarea></div><div class="preview-pane"><div class="preview-top"><span></span><span></span><span></span><small>LIVE PREVIEW</small></div><iframe id="sitePreview" title="Generated website preview" sandbox="allow-forms"></iframe></div></div><p class="fineprint">This generates a local template based on your description. For fully AI-written code, connect an AI API.</p></div></div>
+</section>
+<section class="view hidden" id="storyView">
+  <div class="page-heading"><div class="eyebrow">STORY WORKSHOP</div><h1>Story & book creator</h1><p>Give Solire an idea — get a story starter with chapters and a cover concept.</p></div>
+  <div class="work-card"><label class="field-label" for="storyIdea">YOUR STORY IDEA</label><textarea class="input big" id="storyIdea" rows="4" placeholder="A kid finds a door in their basement that opens into a city in the clouds…"></textarea><div class="field-label">CHOOSE A GENRE</div><div class="genre-grid" id="genres"><button class="genre selected" data-genre="Fantasy">✧ Fantasy</button><button class="genre" data-genre="Sci-fi">☄ Sci-fi</button><button class="genre" data-genre="Mystery">⌕ Mystery</button><button class="genre" data-genre="Romance">♡ Romance</button><button class="genre" data-genre="Horror">☾ Horror</button><button class="genre" data-genre="Adventure">➤ Adventure</button><button class="genre" data-genre="Kids' bedtime">☁ Kids' bedtime</button><button class="genre" data-genre="Comedy">☻ Comedy</button></div><div class="form-row"><div><label class="field-label" for="chapters">CHAPTERS</label><input class="input" type="number" id="chapters" min="1" max="12" value="4"></div><div><label class="field-label" for="storyFormat">WRITE FOR</label><select class="input" id="storyFormat"><option>Everyone</option><option>Kids</option><option>Young adults</option><option>Adults</option></select></div></div><button class="primary" id="makeStory">✦ Write my story</button><div class="result hidden" id="storyResult"><div class="result-head"><b id="storyTitle">Your story</b><button class="secondary small" id="saveStory">Download .txt</button></div><textarea id="storyText" class="input story-output" rows="18"></textarea></div></div>
+</section>
+<section class="view hidden" id="personalityView">
+  <div class="page-heading"><div class="eyebrow">MAKE IT YOURS</div><h1>Solire's personality</h1><p>This applies everywhere in this demo: chat, voice, websites and stories.</p></div>
+  <div class="work-card"><div class="field-label">TONE</div><div class="tone-grid" id="tones">
+    <button class="tone selected" data-tone="Friendly"><b>☺ Friendly</b><small>Warm, upbeat and encouraging</small></button><button class="tone" data-tone="Professional"><b>▤ Professional</b><small>Clear, precise, polished</small></button><button class="tone" data-tone="Witty"><b>✧ Witty</b><small>Playful humor and clever lines</small></button><button class="tone" data-tone="Poetic"><b>❋ Poetic</b><small>Lyrical, imaginative language</small></button><button class="tone" data-tone="Blunt"><b>➤ Blunt</b><small>Straight to the point, no fluff</small></button><button class="tone" data-tone="Gen-Z"><b>✌ Gen-Z</b><small>Casual slang, lowkey iconic</small></button><button class="tone" data-tone="Pirate"><b>⚓ Pirate</b><small>Arr, talks like a sea captain</small></button><button class="tone" data-tone="Wise mentor"><b>✦ Wise mentor</b><small>Calm, thoughtful, guiding</small></button>
+  </div><div class="field-label spaced">REPLY LENGTH</div><div class="length-row" id="lengths"><button class="length selected" data-length="short">Short</button><button class="length" data-length="balanced">Balanced</button><button class="length" data-length="detailed">Detailed</button></div><label class="check-row"><input type="checkbox" id="useEmoji" checked> Use emojis</label><label class="field-label spaced" for="customInstructions">CUSTOM INSTRUCTIONS</label><textarea class="input big" id="customInstructions" rows="4" placeholder="Tell Solire how you like answers. For example: explain things simply, ask clarifying questions, or use examples."></textarea><button class="primary" id="savePersonality">Save personality</button><span class="saved hidden" id="savedMsg">✓ Preferences saved for this session</span></div>
+</section>
+<footer class="footer"><span>✦ Solire AI Studio</span><span>One AI. Many ways to create.</span></footer>
+</main>
+</div>
+<div class="toast hidden" id="toast"></div>
+<script src="script.js"></script>
+</body></html>
